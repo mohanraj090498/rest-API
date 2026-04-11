@@ -3,10 +3,12 @@ package com.learning.springboot.service;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.learning.springboot.entity.UserDetails;
+import com.learning.springboot.exception.UserNotFoundException;
 import com.learning.springboot.repository.UserDetailsRepository;
 
 @Service
@@ -27,7 +29,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDetails getUserById(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		Optional<UserDetails> userDetails = userRepository.findById(id);
+		if (userDetails.isPresent()) {
+			return userDetails.get();
+		}else {
+			throw new UserNotFoundException("user not found "+id);
+		}
 	}
 
 	@Override

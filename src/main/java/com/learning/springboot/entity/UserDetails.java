@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER_DETAILS")
@@ -13,7 +14,9 @@ public class UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Size(min = 2,message = "name must be greater than 2")
 	private String name;
+	@Size(min = 10,max = 10, message = "phone number must be 10 digit")
 	private String mobileNumber;
 	
 	
