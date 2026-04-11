@@ -11,6 +11,7 @@ public class SamleController {
 	
 	@GetMapping("/test")
 	private String test() {
+		System.err.println("validate working fine ");
 		return "Test";
 	}
 	
