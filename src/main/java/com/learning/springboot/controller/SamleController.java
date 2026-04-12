@@ -41,4 +41,16 @@ public class SamleController {
 		Locale locale=LocaleContextHolder.getLocale();
 		return	messageSource.getMessage("goodMorning.message",null,"Default message",locale);
 	}
+	
+	//Request param version
+	@GetMapping(path = "/version",params = "version=v1")
+	private HelloWorld getRequestParamParametersV1() {
+		return new HelloWorld( String.format("Hello world v1"));
+	}
+	
+	@GetMapping(path = "/version",params = "VERSION=v2")
+	private HelloWorld getRequestParamParametersV2() {
+		return new HelloWorld( String.format("Hello world v2"));
+	}
+	
 }
